@@ -19,8 +19,6 @@ void
 	unsigned long long	t_size;
 	unsigned long long	i;
 
-	if (count <= 0 || size <= 0)
-		return (NULL);
 	t_size = (unsigned long long) count * (unsigned long long) size;
 	if (t_size > 4294967295)
 		return (NULL);
