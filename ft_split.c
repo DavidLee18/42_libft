@@ -27,7 +27,7 @@ static char
 			total++;
 		i++;
 	}
-	split = (char**)malloc(sizeof(s) * (total + 2));
+	split = (char **)malloc(sizeof(s) * (total + 2));
 	if (!split)
 		return (NULL);
 	return (split);
@@ -94,7 +94,8 @@ char
 {
 	char	**split;
 
-	if (!(split = ft_alloc_split(s, c)))
+	split = ft_alloc_split(s, c);
+	if (!split)
 		return (NULL);
 	if (!ft_split_by_char(split, s, c))
 		return (NULL);
