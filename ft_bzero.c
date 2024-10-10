@@ -13,9 +13,9 @@
 #include "libft.h"
 
 void
-	ft_bzero(void *s, ssize_t n)
+	ft_bzero(void *s, size_t n)
 {
-	ssize_t	i;
+	size_t	i;
 
 	if (!s)
 		return ;
