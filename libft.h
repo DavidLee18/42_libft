@@ -46,7 +46,7 @@ int				ft_isprint(int c);
 
 char			*ft_itoa(int n);
 
-void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
+void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 void			*ft_memchr(const void *s, int c, size_t n);
 

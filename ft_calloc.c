@@ -15,11 +15,20 @@
 void
 	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
+	void				*ptr;
+	unsigned long long	t_size;
+	unsigned long long	i;
 
-	ptr = (void *)malloc(count * size);
+	if (count <= 0 || size <= 0)
+		return (NULL);
+	t_size = (unsigned long long) count * (unsigned long long) size;
+	if (t_size > 4294967295)
+		return (NULL);
+	ptr = (void *)malloc((unsigned long)t_size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, count);
+	i = -1;
+	while (++i < t_size)
+		*(char *)(ptr + i) = 0;
 	return (ptr);
 }
