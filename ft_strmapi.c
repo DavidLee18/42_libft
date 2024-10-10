@@ -18,7 +18,8 @@ char
 	char	*str;
 	size_t	i;
 
-	if (!(str = ft_strdup(s)))
+	str = ft_strdup(s);
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (str[i])

@@ -15,7 +15,14 @@
 static int
 	ft_abs(int nbr)
 {
-	return ((nbr < 0) ? -nbr : nbr);
+	if (nbr < 0)
+	{
+		return (-nbr);
+	}
+	else
+	{
+		return (nbr);
+	}
 }
 
 static void
@@ -44,7 +51,8 @@ char
 	size_t	length;
 
 	is_neg = (n < 0);
-	if (!(str = ft_calloc(11 + is_neg, sizeof(*str))))
+	str = ft_calloc(11 + is_neg, sizeof(*str));
+	if (!str)
 		return (NULL);
 	if (n == 0)
 		str[0] = '0';

@@ -22,7 +22,7 @@ void
 	i = 0;
 	while (i < len)
 	{
-		*(unsigned char*)(b + i) = (unsigned char)c;
+		*(unsigned char *)(b + i) = (unsigned char)c;
 		i++;
 	}
 	return (b);

@@ -22,7 +22,7 @@ void
 	i = 0;
 	while (i < n)
 	{
-		*(char*)(s + i) = 0;
+		*(char *)(s + i) = 0;
 		i++;
 	}
 }

@@ -25,7 +25,7 @@ int
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
 		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
-	is_neg = (str[i] == '-') ? -1 : 1;
+	is_neg = (str[i] == '-') * 2 - 1;
 	if (is_neg == -1 || str[i] == '+')
 		i++;
 	res = 0;

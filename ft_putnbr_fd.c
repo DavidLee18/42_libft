@@ -15,7 +15,14 @@
 static int
 	ft_abs(int nbr)
 {
-	return ((nbr < 0) ? -nbr : nbr);
+	if (nbr < 0)
+	{
+		return (-nbr);
+	}
+	else
+	{
+		return (nbr);
+	}
 }
 
 void
