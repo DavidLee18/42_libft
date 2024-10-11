@@ -19,8 +19,8 @@ void	ft_lstadd_back(t_list **lst, t_list *newl)
 	if (!lst)
 		return ;
 	i = 0;
-	while (*(lst + i))
+	while (lst[i])
 		i++;
-	*(lst + i) = newl;
-	*(lst + i + 1) = NULL;
+	lst[i] = newl;
+	lst[i + 1] = NULL;
 }

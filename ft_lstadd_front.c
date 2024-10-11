@@ -21,6 +21,7 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	l = 0;
 	while (lst[l])
 		l++;
+	lst[l + 1] = NULL;
 	while (--l >= 0)
 		lst[l + 1] = lst[l];
 	lst[0] = new;
