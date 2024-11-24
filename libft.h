@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:43:52 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/10/02 09:43:52 by jaehylee         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:34:22 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_list
 {
@@ -58,13 +59,13 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 
 void			*ft_memset(void *b, int c, size_t len);
 
-void			ft_putchar_fd(char c, int fd);
+ssize_t			ft_putchar_fd(char c, int fd);
 
-void			ft_putendl_fd(char *s, int fd);
+ssize_t			ft_putendl_fd(char *s, int fd);
 
-void			ft_putnbr_fd(int n, int fd);
+ssize_t			ft_putnbr_fd(int n, int fd);
 
-void			ft_putstr_fd(char *s, int fd);
+ssize_t			ft_putstr_fd(char *s, int fd);
 
 char			**ft_split(char const *s, char c);
 

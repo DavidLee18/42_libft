@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:35:55 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/10/02 09:35:55 by jaehylee         ###   ########.fr       */
+/*   Updated: 2024/11/25 07:31:04 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int
 	}
 }
 
-void
-	ft_putnbr_fd(int n, int fd)
+ssize_t	ft_putnbr_fd(int n, int fd)
 {
 	char	str[13];
 	int		is_neg;
 	int		length;
+	ssize_t	res;
 
 	is_neg = (n < 0);
 	ft_bzero(str, 13);
@@ -46,6 +46,8 @@ void
 		str[length] = '-';
 	else if (length > 0)
 		length--;
+	res = 0;
 	while (length >= 0)
-		write(fd, &str[length--], 1);
+		res += write(fd, &str[length--], 1);
+	return (res);
 }
