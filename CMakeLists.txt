@@ -35,7 +35,7 @@ set(SOURCE_FILES
 		ft_memset.c
 		ft_putstr_fd.c
 		gc_strjoin.c
-		ft_strmapi.c
+		gc_strmapi.c
 		gc_strtrim.c
 		get_next_line/get_next_line.c
 		get_next_line/get_next_line_utils.c

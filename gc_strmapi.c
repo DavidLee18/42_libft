@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   gc_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,12 +13,12 @@
 #include "libft.h"
 
 char
-	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+	*gc_strmapi(t_list **dyn, char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
 	size_t	i;
 
-	str = ft_strdup(s);
+	str = gc_strdup(dyn, s);
 	if (!str)
 		return (NULL);
 	i = 0;
