@@ -7,13 +7,13 @@ set(SOURCE_FILES
 		ft_isprint.c
 		ft_memcmp.c
 		ft_putchar_fd.c
-		ft_split.c
+		gc_split.c
 		ft_strlcat.c
 		ft_strncmp.c
-		ft_substr.c
+		gc_substr.c
 		ft_atoi.c
 		ft_isalpha.c
-		ft_itoa.c
+		gc_itoa.c
 		ft_memcpy.c
 		ft_putendl_fd.c
 		ft_strchr.c
@@ -25,7 +25,7 @@ set(SOURCE_FILES
 		ft_striteri.c
 		ft_memmove.c
 		ft_putnbr_fd.c
-		ft_strdup.c
+		gc_strdup.c
 		ft_strlen.c
 		ft_strrchr.c
 		ft_toupper.c
@@ -34,9 +34,9 @@ set(SOURCE_FILES
 		ft_memchr.c
 		ft_memset.c
 		ft_putstr_fd.c
-		ft_strjoin.c
+		gc_strjoin.c
 		ft_strmapi.c
-		ft_strtrim.c
+		gc_strtrim.c
 		get_next_line/get_next_line.c
 		get_next_line/get_next_line_utils.c
 		ft_lstadd_back.c
@@ -48,5 +48,10 @@ set(SOURCE_FILES
 		ft_lstmap.c
 		ft_lstnew.c
 		ft_lstsize.c
+		gc.c
+		gc2.c
+		stack.c
+		stack2.c
+		stack3.c
 )
 add_library(libft ${SOURCE_FILES})

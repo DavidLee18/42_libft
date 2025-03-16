@@ -29,6 +29,13 @@ typedef struct s_split_next
 	size_t	length;
 }				t_split_next;
 
+typedef struct s_vec
+{
+	int		*ptr;
+	size_t	len;
+	size_t	cap;
+}	t_vec;
+
 int				ft_atoi(const char *str);
 
 void			ft_bzero(void *s, size_t n);
@@ -45,7 +52,7 @@ int				ft_isdigit(int c);
 
 int				ft_isprint(int c);
 
-char			*ft_itoa(int n);
+char			*gc_itoa(t_list **dyn, int n);
 
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 
@@ -67,13 +74,13 @@ ssize_t			ft_putnbr_fd(int n, int fd);
 
 ssize_t			ft_putstr_fd(char *s, int fd);
 
-char			**ft_split(char const *s, char c);
+char			**gc_split(t_list **dyn, char const *s, char c);
 
 char			*ft_strchr(const char *s, int c);
 
-char			*ft_strdup(const char *s1);
+char			*gc_strdup(t_list **dyn, const char *s1);
 
-char			*ft_strjoin(char const *s1, char const *s2);
+char			*gc_strjoin(t_list **dyn, char const *s1, char const *s2);
 
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 
@@ -90,9 +97,9 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 
 char			*ft_strrchr(const char *s, int c);
 
-char			*ft_strtrim(char const *s1, char const *set);
+char			*gc_strtrim(t_list **dyn, char const *s1, char const *set);
 
-char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*gc_substr(t_list **dyn, char const *s, unsigned int start, size_t len);
 
 int				ft_tolower(int c);
 
@@ -115,5 +122,32 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void*));
 
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
+
+void			*gc_calloc(t_list **head, const size_t count, const size_t size);
+
+_Bool			gc_realloc(t_list **dyn, void **oldp, const size_t old_size,
+					const size_t new_size);
+
+_Bool			gc_realloc2(t_list **dyn, void **oldp, void *new);
+
+_Bool			gc_realloc3(t_list *temp_node, void **oldp, void *new);
+
+_Bool			gc_add_to_list(t_list **head, void *new);
+
+void			gc_free_all(t_list *head);
+
+size_t			min_usize(size_t a, size_t b);
+
+void			push_back(t_list **dyn, t_vec *vec, int value);
+void			push_front(t_list **dyn, t_vec *vec, int value);
+int				*pop_back(t_list **dyn, t_vec *vec);
+void			vecalloc(t_list **dyn, t_vec *vec);
+_Bool			has_dup(t_vec v);
+t_vec			*veccpy(t_list **dyn, t_vec v);
+_Bool			velem(int i, t_vec v);
+int				*vecmax(t_list **dyn, t_vec v);
+int				veccmp(t_vec v1, t_vec v2);
+_Bool			consec_eq(t_vec v);
+t_vec			*vecrev(t_list **dyn, t_vec *v);
 
 #endif

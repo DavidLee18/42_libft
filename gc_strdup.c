@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   gc_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,58 +12,23 @@
 
 #include "libft.h"
 
-static int
-	ft_abs(int nbr)
-{
-	if (nbr < 0)
-	{
-		return (-nbr);
-	}
-	else
-	{
-		return (nbr);
-	}
-}
-
-static void
-	ft_strrev(char *str)
-{
-	size_t	length;
-	size_t	i;
-	char	tmp;
-
-	length = ft_strlen(str);
-	i = 0;
-	while (i < length / 2)
-	{
-		tmp = str[i];
-		str[i] = str[length - i - 1];
-		str[length - i - 1] = tmp;
-		i++;
-	}
-}
-
 char
-	*ft_itoa(int n)
+	*gc_strdup(t_list **dyn, const char *s1)
 {
 	char	*str;
-	int		is_neg;
-	size_t	length;
+	size_t	i;
 
-	is_neg = (n < 0);
-	str = ft_calloc(11 + is_neg, sizeof(*str));
+	if (!s1)
+		return (NULL);
+	str = (char *)gc_calloc(dyn, ft_strlen(s1) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	if (n == 0)
-		str[0] = '0';
-	length = 0;
-	while (n != 0)
+	i = 0;
+	while (s1[i])
 	{
-		str[length++] = '0' + ft_abs(n % 10);
-		n = (n / 10);
+		str[i] = s1[i];
+		i++;
 	}
-	if (is_neg)
-		str[length] = '-';
-	ft_strrev(str);
+	str[i] = 0;
 	return (str);
 }
