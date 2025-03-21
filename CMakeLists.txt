@@ -53,5 +53,6 @@ set(SOURCE_FILES
 		stack.c
 		stack2.c
 		stack3.c
+		ft_strcmp.c
 )
 add_library(libft ${SOURCE_FILES})

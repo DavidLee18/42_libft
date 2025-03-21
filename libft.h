@@ -138,6 +138,8 @@ void			gc_free_all(t_list *head);
 
 size_t			min_usize(size_t a, size_t b);
 
+int				ft_strcmp(char *s1, char *s2);
+
 void			push_back(t_list **dyn, t_vec *vec, int value);
 void			push_front(t_list **dyn, t_vec *vec, int value);
 int				*pop_back(t_list **dyn, t_vec *vec);
