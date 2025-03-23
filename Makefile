@@ -1,5 +1,5 @@
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -g -O2 -foptimize-sibling-calls
+CFLAGS := -Wall -Werror -Wextra -O2 -foptimize-sibling-calls
 NAME := libft
 
 SRCS			:=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c gc_split.c \
