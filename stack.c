@@ -29,7 +29,7 @@ void	push_front(t_list **dyn, t_vec *vec, const int value)
 	else
 		newp = (int *)gc_calloc(dyn, vec->cap, sizeof(int));
 	temp = newp + 1;
-	ft_memmove_(temp, vec->ptr, sizeof(int) * (vec->len++));
+	ft_memmove(temp, vec->ptr, sizeof(int) * (vec->len++));
 	*newp = value;
 	vec->ptr = newp;
 }

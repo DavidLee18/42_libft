@@ -71,7 +71,7 @@ _Bool	gc_realloc(t_list **dyn, void **oldp, const size_t old_size,
 	}
 	ft_bzero(temp, new_size);
 	if (*oldp)
-		ft_memmove_(temp, *oldp, min_usize(old_size, new_size));
+		ft_memmove(temp, *oldp, min_usize(old_size, new_size));
 	temp_node = *dyn;
 	if (temp_node->next == NULL)
 		return (*oldp = temp, 1);

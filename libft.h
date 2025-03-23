@@ -12,10 +12,11 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line/get_next_line.h"
 
 typedef struct s_list
 {
@@ -138,16 +139,41 @@ void			gc_free_all(t_list *head);
 
 size_t			min_usize(size_t a, size_t b);
 
+int				ft_strcmp(char *s1, char *s2);
+
+char			*gc_getline(t_list **dyn, int fd);
+
+void			read_loop(t_list **dyn, int fd, size_t offset, char ***templ);
+
+ssize_t			take_temp(t_list **dyn, char **strp, char **temp);
+
+ssize_t			load_substr(t_list **dyn, char **strp, char **temp, size_t nl);
+
+ssize_t			take_line(t_list **dyn, char **strp, size_t until, char **temp);
+
+ssize_t			add_substr(t_list **dyn, size_t src_len, size_t from,
+					char ***src_dst);
+
 void			push_back(t_list **dyn, t_vec *vec, int value);
+
 void			push_front(t_list **dyn, t_vec *vec, int value);
+
 int				*pop_back(t_list **dyn, t_vec *vec);
+
 void			vecalloc(t_list **dyn, t_vec *vec);
+
 _Bool			has_dup(t_vec v);
+
 t_vec			*veccpy(t_list **dyn, t_vec v);
+
 _Bool			velem(int i, t_vec v);
+
 int				*vecmax(t_list **dyn, t_vec v);
+
 int				veccmp(t_vec v1, t_vec v2);
+
 _Bool			consec_eq(t_vec v);
+
 t_vec			*vecrev(t_list **dyn, t_vec *v);
 
 #endif

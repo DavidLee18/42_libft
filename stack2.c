@@ -47,7 +47,7 @@ t_vec	*veccpy(t_list **dyn, const t_vec v)
 	if (res == NULL)
 		return (NULL);
 	res->ptr = (int *)gc_calloc(dyn, v.cap, sizeof(int));
-	ft_memmove_(res->ptr, v.ptr, v.len * sizeof(int));
+	ft_memmove(res->ptr, v.ptr, v.len * sizeof(int));
 	res->cap = v.cap;
 	res->len = v.len;
 	return (res);
