@@ -37,8 +37,8 @@ set(SOURCE_FILES
 		gc_strjoin.c
 		gc_strmapi.c
 		gc_strtrim.c
-		get_next_line/get_next_line.c
-		get_next_line/get_next_line_utils.c
+        gc_getline.c
+		gc_getline2.c
 		ft_lstadd_back.c
 		ft_lstadd_front.c
 		ft_lstclear.c
