@@ -89,7 +89,8 @@ size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 
 size_t			ft_strlen(const char *s);
 
-char			*gc_strmapi(t_list **dyn, char const *s, char (*f)(unsigned int, char));
+char			*gc_strmapi(t_list **dyn, char const *s,
+					char (*f)(unsigned int, char));
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
@@ -98,9 +99,11 @@ char			*ft_strnstr(const char *haystack, const char *needle,
 
 char			*ft_strrchr(const char *s, int c);
 
-char			*gc_strtrim(t_list **dyn, char const *s1, char const *set);
+char			*gc_strtrim(t_list **dyn, char const *s1,
+					char const *set);
 
-char			*gc_substr(t_list **dyn, char const *s, unsigned int start, size_t len);
+char			*gc_substr(t_list **dyn, char const *s, unsigned int start,
+					size_t len);
 
 int				ft_tolower(int c);
 
@@ -122,9 +125,11 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 
 void			ft_lstiter(t_list *lst, void (*f)(void*));
 
-t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void*),
+					void (*del)(void *));
 
-void			*gc_calloc(t_list **head, const size_t count, const size_t size);
+void			*gc_calloc(t_list **head, const size_t count,
+					const size_t size);
 
 _Bool			gc_realloc(t_list **dyn, void **oldp, const size_t old_size,
 					const size_t new_size);

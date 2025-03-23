@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gc_getline.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:46:12 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/11/25 07:43:56 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/23 14:37:43 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*gc_getline(t_list **dyn, int fd)
 	str = (char *)gc_calloc(dyn, BUFFER_SIZE, sizeof(char));
 	if (!str)
 		return (NULL);
-	read_loop(dyn, fd, 0, (char **[]){ &str, &temp });
+	read_loop(dyn, fd, 0, (char **[]){&str, &temp});
 	return (str);
 }
 
@@ -69,7 +69,8 @@ ssize_t	take_temp(t_list **dyn, char **strp, char **temp)
 	else if (!**temp)
 	{
 		*temp = NULL;
-		return ((ssize_t)gc_realloc(dyn, (void **)strp, 1, BUFFER_SIZE + 1) - 1);
+		return ((ssize_t)gc_realloc(dyn, (void **)strp, 1,
+				BUFFER_SIZE + 1) - 1);
 	}
 	i = 0;
 	while (*(*temp + i) && *(*temp + i) != '\n')

@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:35:55 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/10/02 09:35:55 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/23 14:40:05 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char
 	size_t	j;
 
 	str = (char *)gc_calloc(dyn,
-    	ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+			ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
 	i = 0;

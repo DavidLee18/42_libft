@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gc_getline2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:57:55 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/11/25 07:44:28 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/23 14:38:26 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ssize_t	take_line(t_list **dyn, char **strp, size_t until, char **temp)
 		return (-1);
 	while (k < until && *(*strp + k) && *(*strp + k) != '\n')
 		k++;
-	res = add_substr(dyn, until, k, (char **[]){ strp, temp });
+	res = add_substr(dyn, until, k, (char **[]){strp, temp});
 	if (res < 0)
 		return (res);
 	alloc = gc_realloc(dyn, (void **)strp, res + 1, res + 1 + BUFFER_SIZE);
@@ -53,7 +53,8 @@ ssize_t	add_substr(t_list **dyn, const size_t src_len, const size_t from,
 			dest_len + src_len - from);
 	if (!alloc)
 		return (-1);
-	ft_memmove(*src_dst[1] + dest_len, **src_dst + from + 1, src_len - from - 1);
+	ft_memmove(*src_dst[1] + dest_len, **src_dst + from + 1,
+		src_len - from - 1);
 	*(*src_dst[1] + dest_len + src_len - from - 1) = '\0';
 	alloc = gc_realloc(dyn, (void **)*src_dst, src_len, from + 2);
 	if (!alloc)
