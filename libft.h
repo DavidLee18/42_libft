@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:43:52 by jaehylee          #+#    #+#             */
-/*   Updated: 2024/11/25 07:34:22 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/30 00:52:38 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,19 +146,6 @@ size_t			min_usize(size_t a, size_t b);
 
 int				ft_strcmp(char *s1, char *s2);
 
-char			*gc_getline(t_list **dyn, int fd);
-
-void			read_loop(t_list **dyn, int fd, size_t offset, char ***templ);
-
-ssize_t			take_temp(t_list **dyn, char **strp, char **temp);
-
-ssize_t			load_substr(t_list **dyn, char **strp, char **temp, size_t nl);
-
-ssize_t			take_line(t_list **dyn, char **strp, size_t until, char **temp);
-
-ssize_t			add_substr(t_list **dyn, size_t src_len, size_t from,
-					char ***src_dst);
-
 void			push_back(t_list **dyn, t_vec *vec, int value);
 
 void			push_front(t_list **dyn, t_vec *vec, int value);
@@ -180,5 +167,13 @@ int				veccmp(t_vec v1, t_vec v2);
 _Bool			consec_eq(t_vec v);
 
 t_vec			*vecrev(t_list **dyn, t_vec *v);
+
+char			*gc_getline(t_list **dyn, int fd);
+
+char			*pop_temp(t_list **dyn, char ***temp);
+
+char			*pop_split(t_list **dyn, char *str, char ***temp);
+
+char			*load_temp(t_list **dyn, char ***temp);
 
 #endif

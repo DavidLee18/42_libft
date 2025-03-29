@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:46:12 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/03/23 14:37:43 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/30 00:53:01 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,90 +14,58 @@
 
 char	*gc_getline(t_list **dyn, int fd)
 {
-	static char	*temp;
+	static char	**temp;
 	char		*str;
+	ssize_t		stat;
 
 	if (fd < 0)
 		return (NULL);
-	str = (char *)gc_calloc(dyn, BUFFER_SIZE, sizeof(char));
+	str = load_temp(dyn, &temp);
 	if (!str)
 		return (NULL);
-	read_loop(dyn, fd, 0, (char **[]){&str, &temp});
+	while (ft_strchr(str, '\n') == NULL)
+	{
+		stat = read(fd, str + stat, BUFFER_SIZE);
+		if (stat < 0)
+			return (NULL);
+		if (ft_strchr(str, '\n'))
+			break ;
+		if (stat < BUFFER_SIZE)
+			return (str);
+		stat = ft_strlen(str);
+		gc_realloc(dyn, (void **)&str, ft_strlen(str),
+			ft_strlen(str) + BUFFER_SIZE + 1);
+	}
+	return (pop_split(dyn, str, &temp));
+}
+
+char	*pop_temp(t_list **dyn, char ***temp)
+{
+	char	*str;
+	size_t	i;
+
+	if (**temp == NULL)
+	{
+		*temp = NULL;
+		return (NULL);
+	}
+	str = gc_strdup(dyn, **temp);
+	i = 1;
+	while (*(*temp + i) != NULL)
+	{
+		ft_memmove(*(*temp + (i - 1)), *(*temp + i), ft_strlen(*(*temp + i)));
+		i++;
+	}
+	*(*temp + (i - 1)) = NULL;
+	if (i == 1)
+		*temp = NULL;
 	return (str);
 }
 
-void	read_loop(t_list **dyn, int fd, size_t offset, char ***templ)
+char	*pop_split(t_list **dyn, char *str, char ***temp)
 {
-	ssize_t	i;
-	ssize_t	idx;
-
-	if (!**templ)
-	{
-		idx = take_temp(dyn, templ[0], templ[1]);
-		if ((templ[1] && *templ[1] && *(**templ + idx) == '\n') || idx < 0)
-			return ;
-		offset = idx;
-	}
-	else if (offset != 0 && *(**templ + offset - 1) == '\n')
-		return ;
-	i = read(fd, **templ + offset, BUFFER_SIZE);
-	if (i < 0 || (i == 0 && **templ && !***templ))
-		**templ = NULL;
-	if (i == 0 && (!**templ || !*(**templ + offset)) && (**templ && !***templ))
-		*templ[1] = NULL;
-	if (i <= 0)
-		return ;
-	idx = take_line(dyn, *templ, offset + i, templ[1]);
-	if (idx >= 0)
-		read_loop(dyn, fd, idx, templ);
 }
 
-ssize_t	take_temp(t_list **dyn, char **strp, char **temp)
+char	*load_temp(t_list **dyn, char ***temp)
 {
-	size_t	i;
-	size_t	alloc;
-
-	alloc = gc_realloc(dyn, (void **)strp, 0, 1);
-	if (!alloc)
-		return (-1);
-	if (!*temp)
-	{
-		alloc = gc_realloc(dyn, (void **)temp, 0, 1);
-		if (!alloc)
-			return (-1);
-	}
-	else if (!**temp)
-	{
-		*temp = NULL;
-		return ((ssize_t)gc_realloc(dyn, (void **)strp, 1,
-				BUFFER_SIZE + 1) - 1);
-	}
-	i = 0;
-	while (*(*temp + i) && *(*temp + i) != '\n')
-		i++;
-	return (load_substr(dyn, strp, temp, i));
-}
-
-ssize_t	load_substr(t_list **dyn, char **strp, char **temp, size_t nl)
-{
-	size_t	temp_len;
-	size_t	alloc;
-
-	temp_len = ft_strlen(*temp);
-	alloc = gc_realloc(dyn, (void **)strp, 1,
-			nl + (nl != temp_len) + BUFFER_SIZE + 1);
-	if (!alloc)
-		return (-1);
-	ft_memmove(*strp, *temp, nl + (nl != temp_len));
-	if (temp_len == nl)
-	{
-		*temp = NULL;
-		return ((ssize_t)nl);
-	}
-	ft_memmove(*temp, *temp + nl + 1, temp_len - nl - 1);
-	alloc = gc_realloc(dyn, (void **)temp, temp_len + 1, temp_len - nl);
-	if (!alloc)
-		return (-1);
-	*(*temp + temp_len - nl - 1) = '\0';
-	return ((ssize_t)nl + (nl != temp_len));
 }
