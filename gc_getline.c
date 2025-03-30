@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:46:12 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/03/30 00:53:01 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:36:32 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ char	*gc_getline(t_list **dyn, int fd)
 
 	if (fd < 0)
 		return (NULL);
-	str = load_temp(dyn, &temp);
+	str = load_temp(dyn, &temp, &stat);
 	if (!str)
 		return (NULL);
+	if (temp != NULL && *temp != NULL)
+		return (str);
 	while (ft_strchr(str, '\n') == NULL)
 	{
 		stat = read(fd, str + stat, BUFFER_SIZE);
@@ -44,7 +46,7 @@ char	*pop_temp(t_list **dyn, char ***temp)
 	char	*str;
 	size_t	i;
 
-	if (**temp == NULL)
+	if (*temp == NULL || **temp == NULL)
 	{
 		*temp = NULL;
 		return (NULL);
@@ -53,6 +55,7 @@ char	*pop_temp(t_list **dyn, char ***temp)
 	i = 1;
 	while (*(*temp + i) != NULL)
 	{
+		ft_bzero(*(*temp + (i - 1)), ft_strlen(*(*temp + (i - 1))));
 		ft_memmove(*(*temp + (i - 1)), *(*temp + i), ft_strlen(*(*temp + i)));
 		i++;
 	}
@@ -64,8 +67,27 @@ char	*pop_temp(t_list **dyn, char ***temp)
 
 char	*pop_split(t_list **dyn, char *str, char ***temp)
 {
+	*temp = gc_split(dyn, str, '\n');
+	return (pop_temp(dyn, temp));
 }
 
-char	*load_temp(t_list **dyn, char ***temp)
+char	*load_temp(t_list **dyn, char ***temp, ssize_t *offset)
 {
+	char	*str;
+
+	if (*temp == NULL)
+	{
+		*offset = 0;
+		return ((char *)gc_calloc(dyn, BUFFER_SIZE + 1, sizeof(char)));
+	}
+	str = pop_temp(dyn, temp);
+	if (str == NULL)
+	{
+		*offset = 0;
+		return ((char *)gc_calloc(dyn, BUFFER_SIZE + 1, sizeof(char)));
+	}
+	*offset = ft_strlen(str);
+	gc_realloc(dyn, (void **)&str, ft_strlen(str),
+		ft_strlen(str) + BUFFER_SIZE + 1);
+	return (str);
 }
