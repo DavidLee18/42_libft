@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:43:52 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/03/30 21:06:00 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/04/02 13:42:38 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,6 @@ char			*pop_temp(t_list **dyn, char ***temp);
 
 char			*pop_split(t_list **dyn, char *str, char ***temp);
 
-char			*load_temp(t_list **dyn, char ***temp, ssize_t *offset);
+char			*load_temp(t_list **dyn, char ***temp, size_t *offset);
 
 #endif
