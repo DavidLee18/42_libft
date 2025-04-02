@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:46:12 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/04/02 14:17:13 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:44:37 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*gc_getline(t_list **dyn, int fd)
 		str[stat + BUFFER_SIZE] = '\0';
 		if (ft_strchr(str, '\n'))
 			break ;
-		if (stat < BUFFER_SIZE)
+		if (ft_strlen(str) < BUFFER_SIZE)
 			return (str);
 		stat += BUFFER_SIZE;
 		gc_realloc(dyn, (void **)&str, ft_strlen(str),
