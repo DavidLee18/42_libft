@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 01:46:12 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/03/31 03:36:32 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/04/02 12:44:04 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	*pop_temp(t_list **dyn, char ***temp)
 	while (*(*temp + i) != NULL)
 	{
 		ft_bzero(*(*temp + (i - 1)), ft_strlen(*(*temp + (i - 1))));
+		gc_realloc(dyn, (void **)(*temp + (i - 1)),
+			ft_strlen(*(*temp + (i - 1))), ft_strlen(*(*temp + i)));
 		ft_memmove(*(*temp + (i - 1)), *(*temp + i), ft_strlen(*(*temp + i)));
 		i++;
 	}
