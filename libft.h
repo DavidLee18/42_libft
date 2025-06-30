@@ -6,7 +6,7 @@
 /*   By: jaehylee <jaehylee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:43:52 by jaehylee          #+#    #+#             */
-/*   Updated: 2025/04/02 13:42:38 by jaehylee         ###   ########.fr       */
+/*   Updated: 2025/07/01 01:45:36 by jaehylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+# ifndef SCALE
+#  define SCALE 100
+# endif
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 typedef struct s_list
 {
@@ -36,6 +40,13 @@ typedef struct s_vec
 	size_t	len;
 	size_t	cap;
 }	t_vec;
+
+typedef struct s_matrix
+{
+	size_t	col;
+	size_t	cap;
+	t_vec	*ptr;
+}	t_matrix;
 
 int				ft_atoi(const char *str);
 
@@ -175,5 +186,39 @@ char			*pop_temp(t_list **dyn, char ***temp);
 char			*pop_split(t_list **dyn, char *str, char ***temp);
 
 char			*load_temp(t_list **dyn, char ***temp, size_t *offset);
+
+void			matalloc(t_list **dyn, t_matrix *mat);
+
+_Bool			add_row(t_list **dyn, t_vec row, t_matrix *mat);
+
+_Bool			add_col(t_list **dyn, t_vec col, t_matrix *mat);
+
+t_matrix		*matmul(t_list **dyn, t_matrix *a, t_matrix *b);
+
+t_matrix		*matmul2(t_matrix *c, t_matrix *a, t_matrix *b);
+
+int				dot_prod(t_vec row, t_matrix *mat, size_t col);
+
+t_matrix		*rotate(t_list **dyn, double angx, double angy, t_matrix *mat);
+
+t_matrix		*rotate2(t_list **dyn, double angz, t_matrix *mat);
+
+t_matrix		*get_yrot(t_list **dyn, double angle);
+
+t_matrix		*get_xrot(t_list **dyn, double angle);
+
+t_matrix		*get_zrot(t_list **dyn, double angle);
+
+t_matrix		*ortho_proj(t_list **dyn, t_matrix *mat);
+
+t_matrix		*_3d_point_col(t_list **dyn, int x, int y, int z);
+
+t_vec			*mat2vec(t_list **dyn, t_matrix *mat);
+
+t_matrix		*transpose(t_list **dyn, t_matrix *mat);
+
+t_matrix		*append(t_list **dyn, t_matrix *a, t_matrix *b);
+
+t_matrix		*matcpy(t_list **dyn, t_matrix *mat);
 
 #endif
