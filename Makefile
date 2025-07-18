@@ -10,8 +10,7 @@ SRCS			:=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c gc_split.c \
 					ft_memmove.c ft_putnbr_fd.c gc_strdup.c ft_strlen.c ft_strrchr.c \
 					ft_toupper.c ft_calloc.c ft_isdigit.c ft_memchr.c ft_memset.c  \
 					ft_putstr_fd.c gc_strjoin.c gc_strmapi.c gc_strtrim.c \
-					gc_getline.c ft_strcmp.c gc.c gc2.c vec.c vec2.c vec3.c \
-					matrix.c matrix2.c matrix3.c matrix4.c
+					gc_getline.c ft_strcmp.c gc.c gc2.c vec.c vec2.c vec3.c
 OBJS			:= $(SRCS:%.c=$(DIR_BUILD)%.o)
 
 BONUS			:=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
